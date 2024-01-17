@@ -8,9 +8,9 @@ Enregistrement de la MC :
 
 - à venir
 
-Enregistrement de la formation intra :
-
-- à venir
+- en Anglais :
+  https://us02web.zoom.us/rec/share/Q4LGLYow3Z5wvgz7uUgtL03FnnPyGKhHjZM1fDRaE-2kHnolREKZ0FJlRVwnvRkD.TZf72FRUQZQRumzi?startTime=1702562381000
+  Code secret: &G1DC+86
 
 
 ## Deuxième Partie : Démonstration dans Databricks

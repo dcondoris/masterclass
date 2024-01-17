@@ -1,0 +1,15 @@
+artifact_uri: s3://mcmlflow/0/eb92a8cf1e3f4cce981f6e683434efef/artifacts
+end_time: 1675265960570
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: eb92a8cf1e3f4cce981f6e683434efef
+run_name: unique-crane-548
+run_uuid: eb92a8cf1e3f4cce981f6e683434efef
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1675265954948
+status: 3
+tags: []
+user_id: ubuntu

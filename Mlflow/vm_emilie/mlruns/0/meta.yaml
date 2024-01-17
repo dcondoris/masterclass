@@ -1,0 +1,6 @@
+artifact_location: s3://mcmlflow/0
+creation_time: 1675261307130
+experiment_id: '0'
+last_update_time: 1675261307130
+lifecycle_stage: active
+name: Default

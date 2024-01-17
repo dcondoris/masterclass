@@ -1,0 +1,12 @@
+creation_timestamp: 1675268497053
+current_stage: None
+description: ''
+last_updated_timestamp: 1675268497053
+name: test
+run_id: a46036eaa31e4719a8275ee8a20c1c3a
+run_link: ''
+source: s3://mcmlflow/0/a46036eaa31e4719a8275ee8a20c1c3a/artifacts/model_gini_None
+status: READY
+status_message: null
+user_id: null
+version: 1

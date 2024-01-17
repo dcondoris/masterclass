@@ -1,0 +1,15 @@
+artifact_uri: s3://mcmlflow/0/de62e092da9746ca94e553bd80ddb42e/artifacts
+end_time: 1675345669783
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: de62e092da9746ca94e553bd80ddb42e
+run_name: exultant-koi-299
+run_uuid: de62e092da9746ca94e553bd80ddb42e
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1675345665645
+status: 3
+tags: []
+user_id: ubuntu

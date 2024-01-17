@@ -1,0 +1,15 @@
+artifact_uri: s3://mcmlflow/0/a3d1a16dc2fc44e28cd88feb5018454d/artifacts
+end_time: 1675264678923
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: a3d1a16dc2fc44e28cd88feb5018454d
+run_name: redolent-snipe-298
+run_uuid: a3d1a16dc2fc44e28cd88feb5018454d
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1675264678883
+status: 4
+tags: []
+user_id: ubuntu

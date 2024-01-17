@@ -1,0 +1,177 @@
+Slide 5 :
+
+In summary, an API is a more general term that refers to a set of protocols and tools that enable communication between different software applications. A web service is a specific type of API that uses standardized web protocols to enable communication between different applications over a network.
+
+API (Application Programming Interface) and web service are related concepts, but they have some key differences:
+
+Definition: An API is a set of protocols, routines, and tools that enable communication between different software applications. A web service, on the other hand, is a specific type of API that uses standardized web protocols (such as HTTP) to enable communication between different applications over a network.
+
+Interface: APIs can have different types of interfaces, such as RESTful, SOAP, GraphQL, or RPC, and they can communicate through a variety of protocols, including HTTP, TCP, and UDP. Web services, on the other hand, typically use HTTP as their communication protocol, and they expose their functionality through a specific web address (URL).
+
+Platform independence: APIs are designed to be platform-independent and can work across different programming languages and platforms. Web services are also platform-independent, but they require a web server to host them, which may limit their deployment options.
+
+Architecture: APIs can be designed in different architectural styles, such as the client-server, event-driven, or microservices architectures. Web services are typically based on the client-server architecture, where the client sends a request to the server, and the server responds with a result.
+
+Data format: APIs can use different data formats, such as JSON or XML, to exchange data between applications. Web services typically use XML as their primary data format, although JSON is becoming increasingly popular.
+
+Slide 6 :
+
+API RESTful (Representational State Transfer) : C'est le type d'API le plus couramment utilisé dans les applications modernes. Les API RESTful permettent de communiquer avec un serveur en utilisant des requêtes HTTP et des réponses JSON ou XML. Elles sont basées sur l'idée d'un système de ressources, où chaque ressource est identifiée par une URL unique et est manipulée par des méthodes HTTP standard, telles que GET, POST, PUT et DELETE.
+
+API SOAP (Simple Object Access Protocol) : Les API SOAP sont un autre type d'API basé sur XML qui utilise un protocole spécifique pour communiquer avec un serveur. Les API SOAP nécessitent un modèle de message et un modèle de transport spécifiques, ainsi qu'un encodage XML spécifique pour les données. Elles peuvent être plus lourdes que les API RESTful, mais peuvent être utiles dans les environnements où les exigences de sécurité et de fiabilité sont élevées.
+
+GraphQL : Il s'agit d'un langage de requête pour les API, qui permet de spécifier précisément les données requises par l'application cliente. Contrairement aux API RESTful, les API GraphQL ne sont pas basées sur un modèle de ressources, mais plutôt sur des types de données spécifiques. Les clients peuvent demander uniquement les données dont ils ont besoin, ce qui peut réduire la quantité de données transférées et améliorer les performances.
+
+API RPC (Remote Procedure Call) : Il s'agit d'un protocole pour les API qui permet à une application de demander l'exécution d'une procédure ou d'une fonction à distance sur un serveur. Les API RPC peuvent utiliser différents protocoles de transport, tels que HTTP ou TCP/IP, pour communiquer avec le serveur.
+
+API basées sur les événements : Il s'agit d'un type d'API qui permet à une application cliente de s'abonner à des événements produits par un serveur. Les événements peuvent être déclenchés par différents types d'actions, tels que la création ou la mise à jour d'une ressource. Les API basées sur les événements peuvent être utilisées pour des applications en temps réel, telles que les systèmes de messagerie ou les applications de surveillance.
+
+Slide 7 : 
+
+https://www.redhat.com/en/topics/integration/whats-the-difference-between-soap-rest
+https://hevodata.com/learn/soap-vs-rest-apis/
+
+Slide 8 :
+These HTTP methods are used to implement CRUD (Create, Read, Update, Delete) operations on resources exposed by a RESTful API. The GET method is used to retrieve data, the POST method is used to create new resources, the PUT and PATCH methods are used to update existing resources, and the DELETE method is used to delete resources.
+
+Slide 9 :
+In this code, we first define the API URL and parameters, including the API key and the limit of 100 records per request. We then initialize an empty list data to store the API results.
+
+We use a for loop to iterate over the API results, changing the offset parameter in each request to get the next batch of 100 records. We append the results to the data list.
+
+Finally, we convert the data list to a pandas dataframe using the pd.DataFrame() constructor. The resulting dataframe will have one row for each record returned by the API, with columns corresponding to the JSON keys in the API response.
+
+Slide 12 :
+Flask
+
+Advantages: lightweight, easy to learn and use, flexible, and customizable.
+Main features: supports multiple protocols (HTTP, WebSocket, etc.), supports templating, includes a built-in web server, and has a large ecosystem of extensions.
+Django Rest Framework (DRF)
+
+Advantages: comprehensive, powerful, secure, and scalable.
+Main features: includes built-in support for serialization, validation, authentication, and permissions, supports multiple authentication schemes, includes powerful views and serializers, and has excellent documentation.
+FastAPI
+
+Advantages: fast, easy to use, and type-safe.
+Main features: uses the latest Python features and syntax, supports async and await syntax, has automatic data validation, includes built-in API documentation, and supports multiple data formats (JSON, MsgPack, etc.).
+
+
+Django: Django is a full-stack web framework that includes built-in support for HTML templating with its own templating language, Django Templates. Django also supports integrating with popular front-end frameworks like React, Vue.js, and Angular.
+
+Flask: Flask is a lightweight web framework that doesn't include built-in support for templating, but it can easily integrate with popular templating engines like Jinja2, which supports HTML, CSS, and JavaScript templating.
+
+FastAPI: While FastAPI is primarily designed for building API applications, it includes built-in support for generating OpenAPI (formerly Swagger) documentation, which can be used to generate HTML and JavaScript documentation for your API.
+
+----------------------------------------------------------------------------------
+In programming, type safety refers to the property of a programming language or a framework that ensures that only values of a certain type can be used in certain operations, preventing common errors that can arise from using the wrong data types. For example, a type-safe framework would prevent a programmer from passing a string where an integer is expected, or vice versa.
+
+FastAPI is considered type-safe because it relies on Python's type hints to ensure type safety. Python type hints are annotations that can be added to function arguments and return values to indicate the expected data types. FastAPI uses these type hints to validate the input and output data, ensuring that the correct types are used and raising an error if the wrong types are passed.
+
+This has several advantages. First, it helps catch errors early in the development process, reducing the likelihood of bugs and making it easier to debug code. Second, it makes code easier to understand and maintain, as the type hints provide documentation on the expected input and output data types. Finally, it can improve performance, as the framework can use the type hints to optimize data serialization and deserialization.
+
+Overall, type safety is an important feature for any programming language or framework, as it helps prevent common errors and make code more reliable and maintainable.
+--------------------------------------------------------------------------------
+Django: Django is a full-stack web framework that includes an ORM (Object-Relational Mapping) for working with databases, including PostgreSQL, MySQL, SQLite, and Oracle. Django also supports integrating with popular front-end frameworks like React, Vue.js, and Angular.
+
+Flask: Flask is a lightweight web framework that supports integrating with a variety of databases, including SQLAlchemy, Peewee, and PonyORM. Flask can also easily integrate with popular front-end frameworks like React, Vue.js, and Angular.
+
+FastAPI: FastAPI includes built-in support for integrating with a variety of databases, including PostgreSQL, MySQL, SQLite, and MongoDB. FastAPI also supports generating OpenAPI documentation, which can be used to integrate with front-end frameworks and other third-party tools.
+------------------------------------------------------------------------------
+Slide 13 :
+Type safety: An API framework that enforces type safety can help catch errors early in the development process, reducing the likelihood of bugs and making it easier to debug code.
+
+Performance: Depending on the use case, API performance can be critical. A fast framework can help ensure that your API can handle a large number of requests without slowing down.
+
+Scalability: Similar to performance, the ability of an API to scale to handle a growing number of users and requests is important. A framework that can easily scale with your needs can save you time and money in the long run.
+
+Security: APIs are often used to expose sensitive data, so security is a critical consideration when choosing a framework. Look for frameworks that include built-in security features like rate limiting, authentication, and authorization.
+
+Documentation: Good documentation can make it easier to develop and maintain your API over time. Look for frameworks that provide clear and comprehensive documentation, including examples and code snippets.
+
+Community support: A strong community can provide valuable resources, including documentation, tutorials, and support. Look for frameworks with an active community that can help you troubleshoot issues and share best practices.
+
+Integration with other tools: Depending on your use case, you may need to integrate your API with other tools or technologies. Look for frameworks that support the integrations you need, whether that's with databases, front-end frameworks, or other third-party tools.
+
+By considering these criteria, you can choose an API framework that meets your specific needs and helps you build a scalable, secure, and performant API.
+
+slide 18 :
+
+Briefly introduce Postman as an API platform for building and using APIs.
+Postman is used by a variety of enterprises and communities, including small startups, large corporations, government agencies, and open-source projects. Some examples of companies and organizations that use Postman include Cisco, Shopify, PayPal, Accenture, and NASA. Postman also has a large community of individual developers who use the platform to build and test APIs.
+Postman simplifies each step of the API lifecycle and streamlines collaboration to create better APIs faster.
+
+A Postman collection is a group of saved requests, tests, and other information that can be saved and shared as a single entity. A collection can contain one or more requests, each with its own HTTP method, URL, headers, and parameters. Collections can also contain variables, authentication information, tests, and other features that help with API development and testing.
+
+Collections can be exported and shared with others, making it easy to collaborate on API projects. They can also be used to create API documentation and as part of a CI/CD workflow to automate testing and deployment. Overall, collections help streamline the API development and testing process by keeping all related requests and information organized in one place.
+
+
+Slide 19 : Key features of Postman
+
+Postman has many features, properties, and advantages that make it a popular choice for API development and testing. Here are some of the main ones:
+
+User-friendly interface: Postman has a user-friendly interface that simplifies the process of building and testing APIs.
+
+Collaboration tools: Postman provides collaboration tools that enable teams to work together on API development and testing projects.
+
+Automated testing: Postman enables automated testing of APIs using a variety of testing frameworks, including Jest, Mocha, and Chai.
+
+Mock servers: Postman has built-in mock servers that enable developers to simulate APIs before they are built.
+
+Documentation generation: Postman can automatically generate API documentation in a variety of formats, including OpenAPI and RAML.
+
+Integration with other tools: Postman integrates with a variety of other tools, including GitHub, Jenkins, and JIRA, making it easy to incorporate API testing into your development workflow.
+
+API monitoring: Postman can monitor APIs for performance and uptime, alerting developers when issues arise.
+
+Environment management: Postman allows developers to manage environments and variables, enabling them to easily switch between development, staging, and production environments.
+
+The advantages of using Postman include faster API development, improved collaboration and communication among team members, and the ability to catch issues early in the development process, leading to more reliable and robust APIs.
+
+Slide 20 :API testing with Postman
+
+Discuss how Postman can be used for API testing, with features such as automated testing, visualizing test results, and monitoring APIs.
+Highlight how Postman's testing capabilities can help catch bugs and ensure the API works as expected.
+
+Slide 21 :Integrating Postman with other tools  Collaborating with Postman
+
+Mention how Postman supports collaboration through features such as team libraries, sharing and versioning of collections, and the ability to work offline.
+Emphasize how Postman's collaboration capabilities can help teams work together more efficiently.
+
+Discuss how Postman can be integrated with other tools such as CI/CD pipelines, version control systems, and monitoring tools.
+Mention how Postman's integrations can help automate API workflows and make it easier to manage APIs at scale.
+
+
+
+Slide 23  :
+
+
+Slide 24 :
+
+Apache Airflow is an open-source platform used for creating, scheduling, and monitoring workflows or data pipelines. It allows users to programmatically author, schedule, and monitor workflows using Python code. Airflow provides many advantages such as reliability, scalability, and extensibility.
+
+Airflow can be used for a variety of purposes, such as ETL (Extract, Transform, Load) processes, data processing pipelines, machine learning workflows, and more. Its main features include a web-based user interface for monitoring and managing workflows, a rich set of operators and integrations with popular technologies like Hadoop, Spark, and Kubernetes, and a flexible architecture that allows users to easily extend and customize the platform to meet their specific needs.
+
+The interest of automating DAGs is that it allows for efficient, scalable, and repeatable data processing. DAGs (Directed Acyclic Graphs) are used in Airflow to represent workflows, and automating them means that tasks can be executed automatically based on a set schedule or trigger. This reduces the need for manual intervention and ensures that data processing tasks are performed consistently and reliably.
+
+Slide 21 :
+In Apache Airflow, a DAG (Directed Acyclic Graph) is a collection of tasks that are organized in a specific sequence or flow. Each task is represented as a node in the DAG and the connections between nodes represent the dependencies between tasks.
+
+DAGs are used to represent workflows or data pipelines, and they allow users to programmatically define the order in which tasks should be executed. Each task in a DAG is defined as an operator, which is a Python class that defines the logic for the task.
+
+DAGs can be scheduled to run on a specific schedule or triggered by external events. Airflow monitors the status of each task in the DAG and provides a web-based interface for monitoring and managing the workflow. By using DAGs in Airflow, users can create complex, multi-step workflows that can be executed automatically, reliably, and at scale.
+
+Slide 25 :
+
+Graphical representation of DAGs: Airflow provides a graphical representation of DAGs, which makes it easy to visualize the flow of tasks and their dependencies.
+
+Task logs and metrics: The Airflow UI provides access to detailed logs for each task, as well as metrics and statistics about task performance.
+
+Dynamic DAG views: Airflow allows users to dynamically adjust the view of a DAG, such as zooming in and out or collapsing and expanding sections of the DAG.
+
+Triggering and re-running tasks: Airflow allows users to manually trigger individual tasks or re-run failed tasks directly from the UI.
+
+Alerting and notifications: Airflow can be configured to send email alerts or other notifications when tasks fail or when certain conditions are met.
+
+Integration with external tools: The Airflow UI can be integrated with external tools such as Slack or PagerDuty to provide real-time notifications and alerts.
+
+Historical data visualization: The Airflow UI provides historical data visualization for DAGs, allowing users to view past runs and track trends over time.

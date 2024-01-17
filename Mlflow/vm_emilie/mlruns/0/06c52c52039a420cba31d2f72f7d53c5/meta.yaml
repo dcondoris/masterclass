@@ -1,0 +1,15 @@
+artifact_uri: s3://mcmlflow/0/06c52c52039a420cba31d2f72f7d53c5/artifacts
+end_time: 1675358970595
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 06c52c52039a420cba31d2f72f7d53c5
+run_name: legendary-boar-627
+run_uuid: 06c52c52039a420cba31d2f72f7d53c5
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1675358964730
+status: 3
+tags: []
+user_id: ubuntu

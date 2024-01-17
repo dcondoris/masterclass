@@ -1,0 +1,286 @@
+Spend around 1 hour minutes on the slides, a little bit of demo/live coding with kafka and Flink
+
+Reminder of the rules
+Today's topic = Data Streaming, maybe someone already have some notions about it ?
+Does anyone have some ideas?
+1) Introduction to Data Streaming
+Rather continous flow of data vs batch (almost continous in fact as mathematically not the case)
+data or event is streamed from data producer, like the sensors, next slides some example ,
+and we need to process this flow of data to deliver it to customers
+there is not need data streaming architecture if we do not need to analyze it continously
+if we do not need to process/transform data continously = we could use data lake, data warehouse as you alreday known
+
+Continuous data flow: Unlike batch processing where data is processed in discrete chunks,
+ data streaming involves the continuous flow of data from one source to another. 
+This means that data is processed as soon as it arrives, allowing for real-time insights and faster decision-making.
+
+sensors: Source => Operator => Sinks
+
+2) Examples/Use cases : we need to process production lines, or analyze transcations on finances, trading, amazon marketplace
+data is changing constantly, 
+energy production 
+any situation that involved moving object or variables 
+most recent cars, status engine or the traffic 
+you want to use these and you need to use these data continously to monitor these data continouslt
+pacemaker, healthcare, airplane, rocket ?
+streaming from the sensors to the customers.
+
+Real-time analytics: Netflix uses data streaming to analyze user behavior and deliver personalized content recommendations in real-time. The system processes over 700 billion events per day and is built on Apache Kafka.
+
+Fraud detection: Capital One uses Apache Kafka for real-time fraud detection. The system processes over 1 billion events per day and uses machine learning algorithms to detect and prevent fraud in real-time.
+
+Predictive maintenance: General Electric uses data streaming to monitor and predict maintenance needs for their jet engines. Sensors on the engines stream data in real-time to the cloud, where machine learning algorithms analyze the data and predict maintenance needs.
+
+IoT applications: Philips uses data streaming to monitor and control their smart lighting systems. The system streams real-time data from sensors in the lighting fixtures to a central server, where the data is processed and used to adjust lighting settings in real-time.
+
+Social media monitoring: IBM uses data streaming to monitor social media platforms for customer sentiment and engagement. The system streams data in real-time from social media platforms and uses machine learning algorithms to analyze the data and provide insights to customers.
+
+3) These architecture is opposed to batch architecture
+you have already stored and processed data , could also be raw file in the datalake
+process this data in SQL , and then send the result of the query in a dashboard or a dta warehouse
+Data at the beginiing is not evolving continously, is kinda fixed
+process and analyze one at a time, 
+ex : ML models, csv stored on cloud, have a fixed dataset that you can use 
+this static architecture can prove sueful in some cases
+in most cases , it's not use for real time computation/analysis
+
+
+
+4) Stream Processing :using new tools, thes architecture used for real-time prcessing
+you cannot wait to store the data in a datalake/datawarehouse
+=> event sources : IoT, web or social medias, large amount of data, is emitted continously
+mostly defined by the moment of production = so that's why we call it event
+=> Event Hub : main thing, its goal is gathering all the data it receives as input,
+designed to handle and transform this flow of events into more controled data
+(give examples?)
+=> Stream Analitycs/processing platform 
+taht receives the controlled data from the event hub and process/get information from it 
+designed so that you can use the data for BI or Data Analyst Job
+aerial traffic : real times of coordinates/position of different planes , you have a dashboard
+(ex group projet) 
+you will also store the data for latter , maybe to train a ML model for predicting late arrivals or accidents
+this architecture is really flexible : mlain thing to remember event hub manages and assemble the events from diffrent sources and send it to processing (kida like SQL queries from batch architecture)
+
+5)You could have an hybrid version from the 2 previous examples:
+Lambda Architecture, basically merge the two sources : data and events, you add the event hub and process the two separatly and then send them together to storage/dashboard (tableau or PowerBi)
+
+6)Delivery Method : one important aspect of this architecture, 
+there is a garantee of delivery/transmission from producer of events/data to theconsumer
+dashboard, predictive models, this security is very important for the cloud providers
+There can be 2 sources of error : too much, absence of delivery
+you need to be able to deliverthe exact amount of events
+
+
+7) Stream Processing Tools: 
+Micro-batching vs. real-time processing: 
+
+In data streaming, 2 main approaches to processing data - micro-batching and real-time processing.
+
+Micro-batching involves processing small batches of data at a time, typically on the order of seconds. 
+
+Real-time processing involves processing data as soon as it arrives, which is typically on the order of milliseconds. Real-time processing is more suitable for use cases that require immediate insights and actions.
+
+ENJEUX/NOTIONS
+8) Latence et Débit
+Low latency: Latency refers to the time it takes for data to be processed and analyzed. In data streaming, low latency is important as it enables real-time processing and faster decision-making.
+ This is achieved by optimizing the system architecture and using efficient processing algorithms
+
+9)Fault tolerance: 
+In a data streaming system, it is important to ensure that data processing continues even if there are failures in the system.
+ Fault tolerance is achieved by replicating data across multiple nodes and ensuring that each node can take over processing in the event of a failure.
+
+10) Scalabilité/Partitionnement :
+Scalability: Data streaming systems must be able to handle large volumes of data and scale up or down depending on demand. This is typically achieved through horizontal scaling, where more nodes are added to the system to handle increased data volumes.
+
+Vertical scaling means running your data streaming storage and processors on a more powerful computer.
+ Vertical scaling = scaling up
+
+Horizontal scaling means distributing the workload among multiple computers
+Horizontal scaling = scaling out
+
+In data streaming, Horizontal scaling = distributing the messages in a data stream out onto multiple computers
+=> is also referred to as partitioning the data stream.
+
+Warning : Partitioning a data stream affects the message sequence guarantee. As long as the messages of a data stream stay on a single machine, you can be guaranteed that the messages are read in the same sequence as they were written. Once you partition a data stream, that guarantee may be affected.
+
+Key based partitioning distributes the message across different computers based on a certain key value read from each message.
+=> utilisateur, hash-id transactions, 
+
+
+When using key based partitioning, you may lose the overall message sequence guarantee. Messages written to the same computer (same partition) will still hold their sequence in relation to each other, but may lose their place in the overall sequence, as messages written to other computers (other partitions) might get read ahead of them
+=>  you cannot control the sequence in which the stream processor reads from the different partitions. 
+This is even more impractical if you have also scaled up the stream processors, as illustrated here:
+
+In many cases you do not need a total message sequence guarantee. You only need a message sequence guarantee for related messages in the data stream. For instance, if the messages represents updates to e.g. a customer, then all updates to the same customer should end up on the same computer (partition) in the cluster. That way you can guarantee the sequence of the updates to each customer, which may be good enough for your application. 
+
+Partitioning messages so that all related messages end up on the same server is often done by partitioning the data on the primary key of the messages. That should guarantee that all messages related to the same logical entity (e.g. same customer) ends up on the same computer.
+
+
+11?)Event Hub example :Kafka, AZure event hubs, Cloud Pub, Amazon Kinesis
+(compare the advantages of different cloud providers)
+event hub that you can choose 
+communication protocol can be used between event producer and event hub
+cost associated to the options and parameters of the Event Hub
+how long to be able to store this data, it's only temproary storage contrary to database/warehouse*
+how many event at a time, frequenc of events influences the costs
+Stream Processing tools ! spark streaming, Flink, Apache Storm,  kafka
+spark of course, Azure stream analytics for azure?
+depends on your objectives for the events
+
+12)
+Kafka : Apache Kafka, initialement développé par LinkedIn et passé en open source en 2011
+ plateforme de streaming distribuée
+L'architecture distribuée
+Le traitement des streams de données ou stream processing
+=> data hub = topic ?
+Event streaming is the digital equivalent of the human body's central nervous system. I
+Event streaming thus ensures a continuous flow and interpretation of data so that the right information is at the right place, at the right time.
+
+Kafka is an open-source distributed data streaming platform that was originally developed by LinkedIn. It is designed to handle high volumes of data in real-time and provides a reliable, scalable, and fault-tolerant way to process data.
+
+Kafka's core abstraction is the "topic", which is a stream of records. Producers publish records to a topic, and consumers read records from a topic. Kafka is designed to handle data streaming at scale, with support for millions of topics and billions of events per day.
+
+Some key features of Kafka include:
+
+Event Hub: Kafka serves as a central event hub for data streaming. Producers publish data to Kafka, and consumers read data from Kafka. Kafka provides a reliable and scalable way to process data in real-time.
+
+Broker: Kafka uses a distributed architecture with multiple brokers to provide fault tolerance and scalability. Each broker contains a subset of the topic data, and topics are replicated across multiple brokers for fault tolerance.
+
+Producer: Producers publish data to Kafka topics. Producers can also partition data across multiple topics for better performance and scalability.
+
+Consumer: Consumers read data from Kafka topics. Kafka provides various consumer groups to enable parallel processing of data, which helps to scale processing to handle large volumes of data.
+
+Some core concepts of Kafka include:
+
+Partitioning: Kafka topics are partitioned across multiple brokers for better scalability and performance. Each partition is replicated across multiple brokers for fault tolerance.
+
+Offsets: Kafka tracks the offset of each record within a topic, which allows consumers to read data from a specific point in the stream.
+
+Retention: Kafka can be configured to retain data for a certain period of time or until a certain amount of data has been processed. This allows data to be reprocessed if needed and provides a way to store historical data.
+
+Kafka is widely used in various industries and applications, including real-time analytics, fraud detection, IoT, and social media monitoring. Its scalability, fault-tolerance, and real-time processing capabilities make it a popular choice for organizations looking to implement data streaming solutions.
+
+12)
+Flink is a distributed system and engine for stateful big data streaming
+event/time processing time semantics
+low latency, hight throughput
+exactly once consitency gaurantee
+connectors to everything Kafka HDFS S3, Cassandra
+high availability
+
+Apache Flink is an open-source distributed data streaming platform that is designed to handle large volumes of data in real-time. It was developed by the Apache Software Foundation and is used by companies such as Alibaba, Uber, and Netflix.
+
+Flink is designed to provide low-latency, fault-tolerant processing of streaming data. It provides a unified programming model for batch and stream processing, which enables developers to write complex data processing logic in a single platform.
+
+Some key features of Flink include:
+
+Stateful stream processing: Flink provides support for stateful stream processing, which enables developers to write complex stream processing applications that maintain state over time. This is useful for use cases such as fraud detection and real-time analytics.
+
+Fault-tolerance: Flink uses a distributed architecture with multiple task managers to provide fault-tolerance. It can recover from node failures and provides exactly-once semantics for data processing.
+
+Windowing: Flink provides support for various windowing techniques, which enables developers to process data in discrete time intervals. This is useful for use cases such as real-time aggregation and event-time processing.
+
+Streaming SQL: Flink provides support for SQL queries over streaming data, which enables developers to write complex queries that process data in real-time.
+
+Some core concepts of Flink include:
+
+Data streams: Flink processes data in the form of data streams, which are infinite sequences of data records. Data streams are processed in real-time and can be partitioned across multiple task managers for scalability.
+
+Operators: Flink provides various operators for processing data streams, such as map, filter, and join. Developers can chain operators together to form complex processing pipelines.
+
+State: Flink provides support for maintaining state over time in stream processing applications. This enables developers to maintain context over time and perform complex processing logic.
+
+Flink is widely used in various industries and applications, including real-time analytics, fraud detection, IoT, and financial services. Its scalability, fault-tolerance, and support for stateful stream processing make it a popular choice for organizations looking to implement complex data streaming solutions.
+
+FIN
+Conclusion: 
+Apache Flink: Flink is an open-source data streaming platform that provides support for stateful stream processing and low-latency, fault-tolerant processing of streaming data. Its unified programming model for batch and stream processing enables developers to write complex data processing logic in a single platform.
+
+Flink's main advantages = support for stateful stream processing, exactly-once processing semantics, and streaming SQL capabilities. One disadvantage of Flink = it can be more difficult to set up and use than other platforms.
+
+Apache Spark Streaming: Spark Streaming is an extension of the popular Apache Spark framework that provides support for real-time stream processing. It uses Spark's batch processing engine to process data in micro-batches, which enables it to provide low-latency processing of streaming data. 
+
+
+Spark Streaming's main advantages are its ease of use and integration with the Spark ecosystem, as well as its support for batch and stream processing in a single platform. 
+
+However, Spark Streaming has some limitations, including lower throughput compared to other data streaming platforms and less support for stateful stream processing.
+
+
+Apache Kafka: Kafka is an open-source distributed data streaming platform that provides a reliable and scalable way to process data in real-time. Its core abstraction is the "topic", which is a stream of records. 
+
+Kafka's main advantages are its scalability, fault-tolerance, and support for real-time data streaming at scale. It is widely used in various industries and applications, including real-time analytics, fraud detection, IoT, and social media monitoring.
+
+ However, Kafka is primarily a messaging system and does not provide built-in support for stream processing, which means it needs to be integrated with other data processing frameworks to provide complete stream processing
+
+
+8) stream processing tools : real/quasi continous vs micro batching
+process small amoutn of data based of their exact time of production,
+you define a window to select the pertinent data and enlarge it or reduce it
+
+some trends social medias, windowing on some themes, energy it can be relevant
+
+lambda architecture is more flexible than batch architecture -> rocket 
+
+
+Small presentation Kafka data streaming architecture
+
+>>you can ask questions
+
+DEMO : Quick demo Kafka UI, see it in action,  
+how we can produce some messages, send them to kafka event hub
+we will handle and consume continous data to do a sentiment analysis on tweets
+we have a large file from tweets, we will simulate webscrapping 
+by picking inside the json to simulate API/get requests
+docker compose : image zookeper (processing the background, "brocker")
+regulate the flow of data and the distribution of the data to the client (hence the name brocker)
+
+we mlauch kafka then kafka Ui to have an interface trough a webpage
+
+docker compose up  --scale kafka=3 (to change the number of brokers on the server)
+so that the distribution of information works well (as we have multiple ports)
+dash -d to launch it in the background 
+the adress from docker compose 
+:8080
+kafka UI 
+general dashboard,we can see that brokers cpount is indeed equals to 3
+brokers = different adresses
+Topics = a library of messages that have been sent, here we have nothing, we can create one
+showing non internal topics
+topic== library of messengers that have been sent
+we'll see how a producer can communicate keys and value to a specific topic
+partition more specific thing which has to deals with brokers
+44:21
+create a new topic :
+time to retain the data in milliseconds = 7 days
+number of partitions =1
+replication factor = 1
+min = 1
+
+consumers= which will gather the data and d some analysis and store the datain databases
+
+kafka python library for interacting with Kafka through python
+files pyhton :
+to produce some data from json and send it to kafka with produce.py
+create kafka producer object linked to the adress of the kafka server (the same of docker compose up)
+import json to read the json file
+very simple operation : every 0.5 seconds we will send a message with kafka producer with the method send
+to the topic twitter and the value it will send is a random tweet from the list that we have  (encding = utg8=
+pyhton3 produce.py 
+=> loading bar effect to see how much data is generated from large tweets json 
+
+pyhton3 reduce.py :
+get the data from kafka and create a sentiment score file from it 
+Kafka COnsumer
+consume from the srver , from twitter Topic
+the way we use kafka consumer is like a range, along which we iterate
+it will reload each time we get a new message, 
+define a score based on a model that we have imlported
+and we will write that score in a requirements.file
+
+-> dashboard.py
+we have to open 4 consoles, one for each script
+
+-----------------------------------
+pip install kafka-python
+docker-compose up
+

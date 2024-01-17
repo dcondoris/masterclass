@@ -1,0 +1,15 @@
+artifact_uri: s3://mcmlflow/0/abd0c0d5158043d685887b6de7c7251d/artifacts
+end_time: 1675261932722
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: abd0c0d5158043d685887b6de7c7251d
+run_name: abrasive-flea-190
+run_uuid: abd0c0d5158043d685887b6de7c7251d
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1675261932671
+status: 4
+tags: []
+user_id: ubuntu

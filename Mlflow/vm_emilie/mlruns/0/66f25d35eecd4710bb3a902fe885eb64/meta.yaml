@@ -1,0 +1,15 @@
+artifact_uri: s3://mcmlflow/0/66f25d35eecd4710bb3a902fe885eb64/artifacts
+end_time: 1675345588629
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 66f25d35eecd4710bb3a902fe885eb64
+run_name: loud-colt-292
+run_uuid: 66f25d35eecd4710bb3a902fe885eb64
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1675345582254
+status: 3
+tags: []
+user_id: ubuntu
